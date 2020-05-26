@@ -46,21 +46,6 @@
           <p class="card-text">
             <i class="far fa-clock pr-2"></i>createdAt: not implemented
           </p>
-          <!-- TODO IsPrivate  -->
-          <a
-            class="fas fa-lock-open green-text"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Toggle private status"
-            v-show="keepData.isPrivate == false"
-          ></a>
-          <a
-            class="fas fa-lock red-text"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Toggle private status"
-            v-show="keepData.isPrivate == true"
-          ></a>
         </div>
       </div>
 
@@ -72,30 +57,58 @@
       <div class="card-body">
         <!-- Keep Description -->
         <h5>{{keepData.description}}</h5>
+      </div>
 
-        <!-- Buttons -->
-        <!-- Read More Description Button -->
-        <a
-          class="btn btn-flat red-text p-1 my-1 mr-0 mml-1 collapsed"
-          data-toggle="collapse"
-          href="#collapseContent"
-          aria-expanded="false"
-          aria-controls="collapseContent"
-        ></a>
-        <!-- TODO Share Keep -->
+      <!-- Keep Buttons -->
+      <div class="card-footer text-center mb-1 mx-auto rounded shadow-sm border-0 bg-light">
+        <!-- TODO View Keep -->
         <i
-          class="fas fa-share-alt text-muted float-right p-1 my-1"
+          class="fab fa-kaggle text-info btn border-bottom"
+          @click="addKeepToVault()"
           data-toggle="tooltip"
           data-placement="top"
-          title="Share this post"
-        ></i>
+          title="Save to Vault"
+        >
+          :
+          <span class="text-danger">{{keepData.keeps}}</span>
+        </i>
         <!-- TODO Save Keep to Vault -->
         <i
-          class="fas fa-heart text-muted float-right p-1 my-1 mr-3"
+          class="far fa-eye text-info btn border-bottom"
+          @click="viewKeep()"
           data-toggle="tooltip"
           data-placement="top"
           title="I like it"
-        ></i>
+        >
+          :
+          <span class="text-danger">{{keepData.views}}</span>
+        </i>
+        <!-- TODO Keep Shares (not implemented) -->
+        <i
+          class="fas fa-share-square text-info btn disabled border-bottom"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="Share this Keep"
+        >
+          :
+          <span class="text-danger">{{keepData.views}}</span>
+        </i>
+
+         <!-- IsPrivate icons  -->
+          <a
+            class="fas fa-lock-open text-danger"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Toggle private status"
+            v-show="keepData.isPrivate == false"
+          >Public</a>
+          <a
+            class="fas fa-lock text-info"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Toggle private status"
+            v-show="keepData.isPrivate == true"
+          >Private</a>
       </div>
     </div>
   </div>
