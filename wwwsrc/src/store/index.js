@@ -73,6 +73,14 @@ export default new Vuex.Store({
     },
 
     // NOTE Vault Actions
+    async createVault({ dispatch }, newVault) {
+      try {
+        let res = await api.post("vaults", newVault);
+        dispatch("getUserVaults");
+      } catch (error) {
+        console.error(error, "failed to createVault from Store");
+      }
+    },
     async getUserVaults({ commit }) {
       try {
         let res = await api.get("/vaults/user");
@@ -81,10 +89,10 @@ export default new Vuex.Store({
         console.error(error, "failed to getUserVaults from Store");
       }
     },
-    async deleteVault({ commit, dispatch }, vaultId) {
+    async deleteVault({ dispatch }, vaultId) {
       try {
         await api.delete("vaults/" + vaultId);
-        window.location.reload();
+        dispatch("getUserVaults");
       } catch (error) {
         console.error(error, "failed to deleteVault from Store");
       }

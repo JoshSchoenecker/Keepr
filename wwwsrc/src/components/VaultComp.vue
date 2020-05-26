@@ -1,38 +1,36 @@
 <template>
-  <div class="vault">
-    <div class="col-3">
-      <div class="card">
-        <div class="card-header">
-          <!-- TODO drop down elipse for DELETE & EDIT -->
-          <div class="dropdown show" v-if="$auth.user.sub == vaultData.userId">
+  <div class="vault col-sm-10 col-lg-3 m-auto">
+    <div class="card mb-3">
+      <div class="card-header">
+        <!-- TODO drop down elipse for EDIT -->
+        <div class="dropdown show" v-if="$auth.user.sub == vaultData.userId">
+          <button
+            class="bg-transparent border-0"
+            href="#"
+            role="button"
+            id="dropdownMenuLink"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="fas fa-ellipsis-h"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <button
-              class="bg-transparent border-0"
-              href="#"
-              role="button"
-              id="dropdownMenuLink"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <i class="fas fa-ellipsis-h"></i>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <button
-                class="btn text-danger btn-sm ml-4"
-                style="font-size: 1.1rem"
-                @click="deleteVault()"
-                data-toggle="tooltip"
-                data-placement="top"
-                title="Delete This Vault"
-              >Delete Vault</button>
-            </div>
+              class="btn text-danger btn-sm ml-4"
+              style="font-size: 1.1rem"
+              @click="deleteVault()"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Delete This Vault"
+            >Delete Vault</button>
           </div>
         </div>
-        <div class="card-title">{{vaultData.name}}</div>
-        <div class="card-body">{{vaultData.description}}</div>
-        <div class="card-footer">
-          <!-- TODO total amount of keeps & create at date -->
-        </div>
+      </div>
+      <div class="card-title">{{vaultData.name}}</div>
+      <div class="card-body">{{vaultData.description}}</div>
+      <div class="card-footer">
+        <!-- TODO total amount of keeps & create at date -->
       </div>
     </div>
   </div>
