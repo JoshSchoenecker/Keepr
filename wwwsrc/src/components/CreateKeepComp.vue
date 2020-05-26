@@ -1,5 +1,5 @@
 <template>
-  <div class="create-keep">
+  <div class="create-keep row">
     <!-- Full Height Modal Right -->
     <div
       class="modal fade right"
@@ -56,8 +56,13 @@
           <div class="modal-footer justify-content-center">
             <!-- IsPrivate checkbox -->
             <div class="form-check">
-              <input type="checkbox" 
-              v-model="newKeep.isPrivate" class="form-check-input" id="materialChecked" checked />
+              <input
+                type="checkbox"
+                v-model="newKeep.isPrivate"
+                class="form-check-input"
+                id="materialChecked"
+                checked
+              />
               <label class="form-check-label" for="materialChecked">Make this Keep Private</label>
             </div>
             <button type="button" class="btn btn-info text-light" data-dismiss="modal">Cancel</button>
@@ -74,8 +79,8 @@
     <!-- Button trigger modal -->
     <button
       type="button"
-      class="btn text-danger p-0 pl-2 ml-5 "
-      style="font-size:2.8rem; text-shadow: 1px 1px 3px #000000;"
+      class="btn text-danger p-0 pl-2 ml-5"
+      style="font-size:2.6rem; text-shadow: 1px 1px 3px #000000;"
       data-toggle="modal"
       data-target="#fullHeightModalRight"
     >&plus;</button>
@@ -89,7 +94,7 @@ export default {
   name: "create-keep",
   data() {
     return {
-      newKeep: { isPrivate: true}
+      newKeep: { isPrivate: true }
     };
   },
   computed: {},

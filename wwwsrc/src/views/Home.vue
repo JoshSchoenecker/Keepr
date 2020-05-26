@@ -1,7 +1,14 @@
 <template>
   <div class="home container-fluid mt-1">
     <!-- NOTE Create Keep Component -->
-    <CreateKeepComp v-if="$auth.isAuthenticated" />
+    <div class="row header">
+      <div class="col-12">
+        <h1 class="text-center mt-4">
+          <CreateKeepComp class="float-left" v-if="$auth.isAuthenticated" />Keeps
+          <hr class="w-50 bg-info mb-4" />
+        </h1>
+      </div>
+    </div>
     <!-- NOTE Draws Keeps to Home view -->
     <div class="row justify-content-center">
       <KeepComp v-for="keep in keeps" :key="keep.id" :keepData="keep" />
