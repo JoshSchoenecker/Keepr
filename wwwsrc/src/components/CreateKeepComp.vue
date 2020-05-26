@@ -63,6 +63,7 @@
             <button type="button" class="btn btn-info text-light" data-dismiss="modal">Cancel</button>
             <button
               type="button"
+              data-dismiss="modal"
               class="btn btn-danger text-light"
               @click.prevent="createKeep()"
             >Create Keep</button>
@@ -96,7 +97,6 @@ export default {
     async createKeep() {
       this.$store.dispatch("createKeep", this.newKeep);
       this.newKeep = {};
-      window.location.reload();
     }
   },
   components: {}

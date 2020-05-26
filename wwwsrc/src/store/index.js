@@ -58,7 +58,7 @@ export default new Vuex.Store({
     async createKeep({ dispatch }, newKeep) {
       try {
         let res = await api.post("keeps", newKeep);
-        dispatch("getkeeps");
+        dispatch("getKeeps");
       } catch (error) {
         console.error(error, "failed to createKeep from store");
       }
@@ -66,7 +66,7 @@ export default new Vuex.Store({
     async deleteKeep({ commit, dispatch }, keepId) {
       try {
         await api.delete("keeps/" + keepId);
-        window.location.reload();
+        dispatch("getKeeps");
       } catch (error) {
         console.error(error, "failed to deleteKeep from Store");
       }
