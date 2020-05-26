@@ -19,15 +19,15 @@ export default new Vuex.Store({
   state: {
     publicKeeps: [],
     keeps: [],
-    vaults: []
+    vaults: [],
   },
   mutations: {
     setKeeps(state, keeps) {
       state.keeps = keeps;
     },
-    setVaults(state, vaults){
+    setVaults(state, vaults) {
       state.vaults = vaults;
-    }
+    },
   },
   actions: {
     setBearer({}, bearer) {
@@ -42,7 +42,6 @@ export default new Vuex.Store({
       try {
         let res = await api.get("keeps");
         console.log("getKeeps from Store", res.data);
-
         commit("setKeeps", res.data);
       } catch (error) {
         console.error(error, "failed to getKeeps from Store");
@@ -64,10 +63,10 @@ export default new Vuex.Store({
         console.error(error, "failed to createKeep from store");
       }
     },
-    async deleteKeep({commit, dispatch}, keepId) {
+    async deleteKeep({ commit, dispatch }, keepId) {
       try {
-        window.location.reload();
         await api.delete("keeps/" + keepId);
+        window.location.reload();
       } catch (error) {
         console.error(error, "failed to deleteKeep from Store");
       }
@@ -80,6 +79,14 @@ export default new Vuex.Store({
         commit("setVaults", res.data);
       } catch (error) {
         console.error(error, "failed to getUserVaults from Store");
+      }
+    },
+    async deleteVault({ commit, dispatch }, vaultId) {
+      try {
+        await api.delete("vaults/" + vaultId);
+        window.location.reload();
+      } catch (error) {
+        console.error(error, "failed to deleteVault from Store");
       }
     },
   },

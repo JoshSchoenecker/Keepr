@@ -4,6 +4,29 @@
       <div class="card">
         <div class="card-header">
           <!-- TODO drop down elipse for DELETE & EDIT -->
+          <div class="dropdown show" v-if="$auth.user.sub == vaultData.userId">
+            <button
+              class="bg-transparent border-0"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fas fa-ellipsis-h"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <button
+                class="btn text-danger btn-sm ml-4"
+                style="font-size: 1.1rem"
+                @click="deleteVault()"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Delete This Vault"
+              >Delete Vault</button>
+            </div>
+          </div>
         </div>
         <div class="card-title">{{vaultData.name}}</div>
         <div class="card-body">{{vaultData.description}}</div>
@@ -19,12 +42,29 @@
 <script>
 export default {
   name: "vault",
-  props:["vaultData"],
+  props: ["vaultData"],
   data() {
     return {};
   },
   computed: {},
-  methods: {},
+  methods: {
+    deleteVault() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(result => {
+        if (result.value) {
+          Swal.fire("Deleted!", "Your Vault has been deleted.", "success");
+          this.$store.dispatch("deleteVault", this.vaultData.id);
+        }
+      });
+    }
+  },
   components: {}
 };
 </script>
