@@ -2,8 +2,8 @@
   <div class="create-keep row">
     <!-- Full Height Modal Right -->
     <div
+      id="createKeepModal"
       class="modal fade right"
-      id="fullHeightModalRight"
       tabindex="-1"
       role="dialog"
       aria-labelledby="myModalLabel"
@@ -82,7 +82,7 @@
       class="btn text-danger p-0 pl-2 ml-5"
       style="font-size:2.6rem; text-shadow: 1px 1px 3px #000000;"
       data-toggle="modal"
-      data-target="#fullHeightModalRight"
+      data-target="#createKeepModal"
     >&plus;</button>
     <!-- Full Height Modal Right -->
   </div>
