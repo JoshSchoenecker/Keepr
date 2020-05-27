@@ -45,7 +45,7 @@ namespace Keepr.Repositories
         // NOTE Delete Request
         internal bool Delete(int id, string userId)
         {
-            string sql = "DELETE FROM keeps WHERE id = @id AND userId = @UserId LIMIT 1";
+            string sql = "DELETE FROM keeps WHERE id = @Id AND userId = @UserId LIMIT 1";
             int affectedRows = _db.Execute(sql, new { id, userId });
             return affectedRows == 1;
         }
@@ -66,7 +66,7 @@ namespace Keepr.Repositories
             vk.id AS vaultKeepId
             FROM vaultkeeps vk
             INNER JOIN keeps k ON k.id = vk.keepId 
-            WHERE (vaultId = @vaultId AND vk.userId = @userId)";
+            WHERE (vaultId = @vaultId)";
             return _db.Query<VaultKeepViewModel>(sql, new {vaultId});
         }
 

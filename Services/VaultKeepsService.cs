@@ -37,6 +37,10 @@ namespace Keepr.Services
         internal bool Delete(int id, string userId)
         {
             VaultKeep foundVaultKeep = GetVaultKeepById(id);
+            if (foundVaultKeep == null)
+            {
+                throw new Exception("Invalid Id");
+            }
             if (foundVaultKeep.UserId != userId)
             {
                 throw new Exception("This is not yours");
