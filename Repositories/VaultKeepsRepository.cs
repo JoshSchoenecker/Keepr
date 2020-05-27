@@ -7,11 +7,11 @@ using Keepr.Models;
 namespace Keepr.Repositories
 {
 
-    public class VaultKeepRepository
+    public class VaultKeepsRepository
     {
         private readonly IDbConnection _db;
 
-        public VaultKeepRepository(IDbConnection db)
+        public VaultKeepsRepository(IDbConnection db)
         {
             _db = db;
         }
@@ -19,7 +19,7 @@ namespace Keepr.Repositories
         internal VaultKeep Create(VaultKeep newVaultKeep)
         {
             string sql = @"
-            INSERT INTO vaultkeep
+            INSERT INTO vaultkeeps
             (keepId, vaultId, userId)
             VALUES
             (@KeepId, @VaultId, @UserId);
@@ -31,14 +31,14 @@ namespace Keepr.Repositories
         // NOTE Get Requests
         internal VaultKeep GetVaultKeepById(int id)
         {
-            string sql = "SELECT * vaultkeep WHERE id = @Id";
+            string sql = "SELECT * vaultkeeps WHERE id = @Id";
             return _db.QueryFirstOrDefault<VaultKeep>(sql, new { id });
         }
 
         // NOTE Delete Request
         internal bool Delete(int id, string userId)
         {
-            string sql = "DELETE FROM vaultkeep WHERE id = @id AND userId = @UserId LIMIT 1";
+            string sql = "DELETE FROM vaultkeeps WHERE id = @id AND userId = @UserId LIMIT 1";
             int affectedRows = _db.Execute(sql, new { id, userId });
             return affectedRows == 1;
         }

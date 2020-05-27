@@ -58,6 +58,12 @@ namespace Keepr.Services
             throw new Exception("KeepsService Delete");
         }
 
+// NOTE Many => Many
+        internal IEnumerable<VaultKeepViewModel> GetKeepsByVaultId(int id)
+        {
+            return _repo.GetKeepsByVaultId(id);
+        }
+
         // NOTE Put Requests
         // internal Keep toggleIsPrivate(Keep keepToUpdate, string userId)
         // {

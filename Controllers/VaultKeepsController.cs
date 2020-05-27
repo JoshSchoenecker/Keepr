@@ -4,16 +4,17 @@ using Keepr.Models;
 using Keepr.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Keepr.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
 
-    public class VaultKeepController : ControllerBase
+    public class VaultKeepsController : ControllerBase
     {
-        private readonly VaultKeepService _vks;
-        public VaultKeepController(VaultKeepService vks)
+        private readonly VaultKeepsService _vks;
+        public VaultKeepsController(VaultKeepsService vks)
         {
             _vks = vks;
         }
@@ -24,6 +25,12 @@ namespace Keepr.Controllers
         {
             try
             {
+                 Claim user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+                 if (user == null)
+                 {
+                     throw new Exception("invalid id");
+                 }
+                 string userId = user.Value;
                 return Ok(_vks.Create(newVaultKeep));
             }
             catch (System.Exception err)
@@ -47,7 +54,6 @@ namespace Keepr.Controllers
         }
 
         // NOTE Delete Request
-        [Authorize]
         [HttpDelete("{id}")]
         public ActionResult<string> Delete(int id)
         {

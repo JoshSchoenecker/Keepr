@@ -93,5 +93,21 @@ namespace Keepr.Controllers
         }
 
         // NOTE Put Request
+
+     // NOTE Many => Many requests
+        // NOTE Get Request
+        [Authorize]
+        [HttpGet("{id}/keeps")]
+        public ActionResult<IEnumerable<VaultKeepViewModel>> GetKeepsByVaultId(int id)
+        {
+            try
+            {
+                return Ok(_ks.GetKeepsByVaultId(id));
+            }
+            catch (System.Exception err)
+            {
+                return BadRequest(err.Message);                
+            }
+        }
     }
 }

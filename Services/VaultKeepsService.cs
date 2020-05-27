@@ -7,11 +7,11 @@ using Keepr.Repositories;
 namespace Keepr.Services
 {
 
-    public class VaultKeepService
+    public class VaultKeepsService
     {
-        private readonly VaultKeepRepository _repo;
+        private readonly VaultKeepsRepository _repo;
 
-        public VaultKeepService(VaultKeepRepository repo)
+        public VaultKeepsService(VaultKeepsRepository repo)
         {
             _repo = repo;
         }
