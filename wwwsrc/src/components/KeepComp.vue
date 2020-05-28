@@ -26,9 +26,7 @@
                 data-placement="top"
                 title="Delete This Keep"
               >Delete Keep</button>
-            </div>
-            <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                 <button
+              <button
                 class="btn text-danger btn-sm ml-4"
                 style="font-size: 1.1rem"
                 @click="removeKeepFromVault()"
@@ -36,7 +34,7 @@
                 data-placement="top"
                 title="Delete This Keep"
               >Remove From Vault</button>
-            </div>-->
+            </div>
           </div>
         </div>
 
@@ -166,6 +164,9 @@ export default {
   computed: {
     vaults() {
       return this.$store.state.vaults;
+    },
+    activeVault(){
+      return this.$store.state.activeVault
     }
   },
   methods: {
@@ -173,12 +174,12 @@ export default {
       // this.keepData.keeps -= 1;
       // this.$store.dispatch("editKeep", this.keepData)
       console.log(this.keepData);
-
+      
       // this.$store.dispatch("removeKeepFromVault", this.)
     },
     viewKeep() {
       this.keepData.views += 1;
-      this.$store.dispatch("editKeep", this.keepData)
+      this.$store.dispatch("editKeep", this.keepData);
     },
     addKeepToVault(vaultId) {
       this.keepData.keeps += 1;
