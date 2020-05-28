@@ -97,29 +97,17 @@
         <h5>{{keepData.description}}</h5>
       </div>
 
+      <div class="row">
       <!-- Keep Buttons -->
-      <div class="card-footer text-center mb-1 mx-auto rounded shadow-sm border-0 bg-light">
-        <!-- TODO View Keep -->
+      <div class="col-8 text-center mb-1 mx-auto rounded border-0">
         <i
-          class="fab fa-kaggle text-info btn border-bottom"
-          @click="addKeepToVault()"
+          class="fab fa-kaggle text-info btn disabled border-bottom"
           data-toggle="tooltip"
           data-placement="top"
           title="Save to Vault"
         >
           :
           <span class="text-danger">{{keepData.keeps}}</span>
-        </i>
-        <!-- TODO Save Keep to Vault -->
-        <i
-          class="far fa-eye text-info btn border-bottom"
-          @click="viewKeep()"
-          data-toggle="tooltip"
-          data-placement="top"
-          title="I like it"
-        >
-          :
-          <span class="text-danger">{{keepData.views}}</span>
         </i>
         <!-- TODO Keep Shares (not implemented) -->
         <i
@@ -137,16 +125,30 @@
           class="fas fa-lock-open text-danger"
           data-toggle="tooltip"
           data-placement="top"
-          title="Toggle private status"
+          title="This is a Public Keep!"
           v-show="keepData.isPrivate == false"
         >Public</a>
         <a
           class="fas fa-lock text-info"
           data-toggle="tooltip"
           data-placement="top"
-          title="Toggle private status"
+          title="This is a Private Keep!"
           v-show="keepData.isPrivate == true"
         >Private</a>
+      </div>
+      <!-- NOTE view/like keep -->
+      <div class="col-4">
+        <i
+          class="fas fa-heart text-info btn border shadow-sm"
+          @click="viewKeep()"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="I like it"
+        >
+          :
+          <span class="text-danger">{{keepData.views}}</span>
+        </i>
+      </div>
       </div>
     </div>
   </div>
