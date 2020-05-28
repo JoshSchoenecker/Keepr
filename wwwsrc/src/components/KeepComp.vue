@@ -40,7 +40,7 @@
         </div>
 
         <!-- NOTE VaultKeep -->
-        <div class="col-6 mt-2">
+        <div class="col-6 mt-2 " v-if="$auth.user">
           <div class="dropdown">
             <button
               class="btn btn-info dropdown-toggle float-right"
