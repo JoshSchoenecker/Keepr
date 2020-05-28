@@ -1,37 +1,46 @@
 <template>
   <div class="vault-details container-fluid">
-    <div class="row">
-
+<!-- NOTE Vault -->
+    <div class="row justify-content-center my-4">
       <div class="col-10">
-          <div class="card">
-              <div class="card-header">
-                 <h3>{{vault.name}}</h3>
-                 <!-- TODO finish building out this component -->
-              </div>
+        <div class="card">
+          <div class="card-header text-center">
+            <h3>{{vault.name}}</h3>
           </div>
+          <div class="card-body">
+            <h5>{{vault.description}}</h5>
+          </div>
+        </div>
       </div>
-
     </div>
+
+<!-- NOTE Keeps -->
+    <Keep v-for="keep in vaultKeeps" :key="keep.id"/>
+
   </div>
 </template>
 
 
 <script>
+import Keep from "../components/KeepComp.vue"
 export default {
   name: "vault-details",
   data() {
     return {};
   },
-  mounted(){
- this.$store.dispatch("getVault", this.$route.params.vaultId)
+  mounted() {
+    this.$store.dispatch("getVault", this.$route.params.vaultId);
   },
   computed: {
     vault() {
       return this.$store.state.activeVault;
-    }
+    },
+    vaultKeeps(){
+          return this.$store.state.vaultKeeps
+      }
   },
   methods: {},
-  components: {}
+  components: {Keep}
 };
 </script>
 

@@ -72,6 +72,7 @@ namespace Keepr.Services
             Keep foundKeep = GetKeepById(keepToUpdate.Id);
             if (foundKeep.Keeps < keepToUpdate.Keeps)
             {
+                // TODO possible mistaken empty statement??
                 if (_repo.AddToKeepCount(keepToUpdate));
                 {
                     foundKeep.Keeps = keepToUpdate.Keeps;
