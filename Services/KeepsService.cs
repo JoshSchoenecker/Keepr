@@ -59,9 +59,9 @@ namespace Keepr.Services
         }
 
 // NOTE Many => Many
-        internal IEnumerable<VaultKeepViewModel> GetKeepsByVaultId(int id)
+        internal IEnumerable<VaultKeepViewModel> GetKeepsByVaultId(int id, string userId)
         {
-            return _repo.GetKeepsByVaultId(id);
+            return _repo.GetKeepsByVaultId(id, userId);
         }
 
       

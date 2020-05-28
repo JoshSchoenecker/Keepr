@@ -144,8 +144,11 @@ export default new Vuex.Store({
     // NOTE Get Request PATH: `vaults/ ${vaultId}/ keeps` did not work.
     async getKeepsOnVaults({ commit }, vaultId) {
       try {
-        await api.get("vaults/" + vaultId + "/keeps");
-        commit("setVaultKeeps", vaultId);
+        console.log("vaultId",vaultId);
+        let res = await api.get("vaults/" + vaultId + "/keeps");
+        console.log(res.data);
+        
+        commit("setVaultKeeps", res.data);
       } catch (error) {
         console.error(error, "failed to getKeepsOnVaults from Store");
       }

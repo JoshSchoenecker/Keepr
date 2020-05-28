@@ -98,11 +98,18 @@ namespace Keepr.Controllers
         // NOTE Get Request
         [Authorize]
         [HttpGet("{id}/keeps")]
+        // TODO add claim
         public ActionResult<IEnumerable<VaultKeepViewModel>> GetKeepsByVaultId(int id)
         {
             try
             {
-                return Ok(_ks.GetKeepsByVaultId(id));
+                Claim user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+                if (user == null)
+                {
+                    throw new Exception("invalid userId");
+                }
+                 string userId = user.Value;
+                return Ok(_ks.GetKeepsByVaultId(id, userId));
             }
             catch (System.Exception err)
             {

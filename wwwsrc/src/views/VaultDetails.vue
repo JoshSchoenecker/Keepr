@@ -1,6 +1,6 @@
 <template>
   <div class="vault-details container-fluid">
-<!-- NOTE Vault -->
+    <!-- NOTE Vault -->
     <div class="row justify-content-center my-4">
       <div class="col-10">
         <div class="card">
@@ -14,15 +14,14 @@
       </div>
     </div>
 
-<!-- NOTE Keeps -->
-    <Keep v-for="keep in vaultKeeps" :key="keep.id"/>
-
+    <!-- NOTE Keeps -->
+    <Keep v-for="keep in vaultKeeps" :key="keep.id" :keepData="keep"/>
   </div>
 </template>
 
 
 <script>
-import Keep from "../components/KeepComp.vue"
+import Keep from "../components/KeepComp.vue";
 export default {
   name: "vault-details",
   data() {
@@ -30,17 +29,18 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getVault", this.$route.params.vaultId);
+    this.$store.dispatch("getKeepsOnVaults", this.$route.params.vaultId);
   },
   computed: {
     vault() {
       return this.$store.state.activeVault;
     },
-    vaultKeeps(){
-          return this.$store.state.vaultKeeps
-      }
+    vaultKeeps() {
+      return this.$store.state.vaultKeeps;
+    }
   },
   methods: {},
-  components: {Keep}
+  components: { Keep }
 };
 </script>
 

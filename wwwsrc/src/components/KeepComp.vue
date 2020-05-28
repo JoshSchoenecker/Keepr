@@ -46,13 +46,13 @@
             </button>
 
             <ul
-              v-for="vault in vaults"
-              :key="vault.id"
+            
               class="dropdown-menu"
               role="menu"
               aria-labelledby="menu1"
             >
-              <li role="presentation" @click="addKeepToVault(vault.id)">
+              <li v-for="vault in vaults"
+              :key="vault.id" role="presentation" @click="addKeepToVault(vault.id)">
                 <a role="menuitem">{{vault.name}}</a>
               </li>
             </ul>
