@@ -1,6 +1,6 @@
 <template>
   <div class="vault col-sm-10 col-lg-3 m-auto">
-    <div @click="goToVaultDetails()" class="card mb-3" style="box-shadow: 1px 1px 10px #369">
+    <div class="card mb-3" style="box-shadow: 1px 1px 10px #369">
       <!-- TODO drop down elipse for EDIT -->
       <div class="dropdown show" v-if="$auth.user.sub == vaultData.userId">
         <button
@@ -32,7 +32,11 @@
       <div class="card-body">
         <h5>{{vaultData.description}}</h5>
       </div>
-      <div class="card-footer text-center mb-1 mx-auto rounded shadow-sm border-0 bg-light">
+      <div class="card-footer text-center mb-1 mx-auto rounded shadow-sm border-0 bg-light"> 
+        <div class="d-flex" @click="goToVaultDetails()">
+        <p class="mb-0 mr-1">Go To Vault</p>
+        <i class="fas fa-arrow-right mt-1"></i>
+        </div>
         <!-- TODO total amount of keeps & create at date -->
       </div>
     </div>

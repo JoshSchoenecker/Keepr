@@ -10,6 +10,11 @@
           <div class="card-body">
             <h5>{{vault.description}}</h5>
           </div>
+          <div class="card-footer">
+            <p>
+            {{vaultKeeps.keeps}}
+            </p>
+          </div>
         </div>
       </div>
     </div>

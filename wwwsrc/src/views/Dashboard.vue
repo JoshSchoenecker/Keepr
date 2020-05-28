@@ -28,7 +28,7 @@
     </div>
     <!-- TODO setup mounted for private and public keeps & insert v-if="this.keepData.isPrivate == true" in row -->
     <div class="row mt-3">
-      <KeepComp v-for="keep in keeps" :key="keep.id" :keepData="keep" />
+      <KeepComp  v-for="keep in keeps" :key="keep.id" :keepData="keep" />
     </div>
 
     <hr class="bg-info my-5" />
