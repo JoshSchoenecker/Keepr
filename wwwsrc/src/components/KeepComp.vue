@@ -4,8 +4,8 @@
     <div class="card promoting-card p-1 m-2" style="box-shadow: 1px 1px 10px #f57a007a">
       <!-- dropdown toggle options -->
       <div class="row">
-        <div class="col-6"  v-if="$auth.user">
-          <div class="dropdown show" >
+        <div class="col-6" v-if="$auth.user">
+          <div class="dropdown show">
             <button
               class="bg-transparent border-0"
               href="#"
@@ -19,7 +19,7 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <button
-              v-if="$auth.user.sub == keepData.userId && keepData.isPrivate != false"
+                v-if="$auth.user.sub == keepData.userId && keepData.isPrivate != false"
                 class="btn text-danger btn-sm ml-4"
                 style="font-size: 1.1rem"
                 @click="deleteKeep()"
@@ -40,7 +40,7 @@
         </div>
 
         <!-- NOTE VaultKeep -->
-        <div class="col-6 mt-2 " v-if="$auth.user">
+        <div class="col-6 mt-2" v-if="$auth.user">
           <div class="dropdown">
             <button
               class="btn btn-info dropdown-toggle float-right"
@@ -98,57 +98,57 @@
       </div>
 
       <div class="row">
-      <!-- Keep Buttons -->
-      <div class="col-8 text-center mb-1 mx-auto rounded border-0">
-        <i
-          class="fab fa-kaggle text-info btn disabled border-bottom"
-          data-toggle="tooltip"
-          data-placement="top"
-          title="Save to Vault"
-        >
-          :
-          <span class="text-danger">{{keepData.keeps}}</span>
-        </i>
-        <!-- TODO Keep Shares (not implemented) -->
-        <i
-          class="fas fa-share-square text-info btn disabled border-bottom"
-          data-toggle="tooltip"
-          data-placement="top"
-          title="Share this Keep"
-        >
-          :
-          <span class="text-danger">{{keepData.shares}}</span>
-        </i>
+        <!-- Keep Buttons -->
+        <div class="col-8 text-center mb-1 mx-auto rounded border-0">
+          <i
+            class="fab fa-kaggle text-info btn disabled border-bottom"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Save to Vault"
+          >
+            :
+            <span class="text-danger">{{keepData.keeps}}</span>
+          </i>
+          <!-- TODO Keep Shares (not implemented) -->
+          <i
+            class="fas fa-share-square text-info btn disabled border-bottom"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Share this Keep"
+          >
+            :
+            <span class="text-danger">{{keepData.shares}}</span>
+          </i>
 
-        <!-- IsPrivate icons  -->
-        <a
-          class="fas fa-lock-open text-danger"
-          data-toggle="tooltip"
-          data-placement="top"
-          title="This is a Public Keep!"
-          v-show="keepData.isPrivate == false"
-        >Public</a>
-        <a
-          class="fas fa-lock text-info"
-          data-toggle="tooltip"
-          data-placement="top"
-          title="This is a Private Keep!"
-          v-show="keepData.isPrivate == true"
-        >Private</a>
-      </div>
-      <!-- NOTE view/like keep -->
-      <div class="col-4">
-        <i
-          class="fas fa-heart text-info btn border shadow-sm"
-          @click="viewKeep()"
-          data-toggle="tooltip"
-          data-placement="top"
-          title="I like it"
-        >
-          :
-          <span class="text-danger">{{keepData.views}}</span>
-        </i>
-      </div>
+          <!-- IsPrivate icons  -->
+          <a
+            class="fas fa-lock-open text-danger"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="This is a Public Keep!"
+            v-show="keepData.isPrivate == false"
+          >Public</a>
+          <a
+            class="fas fa-lock text-info"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="This is a Private Keep!"
+            v-show="keepData.isPrivate == true"
+          >Private</a>
+        </div>
+        <!-- NOTE view/like keep -->
+        <div class="col-4">
+          <i
+            class="fas fa-heart text-info btn border shadow-sm"
+            @click="viewKeep()"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="I like it"
+          >
+            :
+            <span class="text-danger">{{keepData.views}}</span>
+          </i>
+        </div>
       </div>
     </div>
   </div>
@@ -166,17 +166,17 @@ export default {
     vaults() {
       return this.$store.state.vaults;
     },
-    activeVault(){
-      return this.$store.state.activeVault
+    activeVault() {
+      return this.$store.state.activeVault;
     }
   },
   methods: {
     removeKeepFromVault() {
       this.keepData.keeps -= 1;
-      this.$store.dispatch("editKeep", this.keepData)
+      this.$store.dispatch("editKeep", this.keepData);
       console.log(this.keepData);
-      
-      this.$store.dispatch("removeKeepFromVault", this.keepData.vaultKeepId)
+
+      this.$store.dispatch("removeKeepFromVault", this.keepData.vaultKeepId);
     },
     viewKeep() {
       this.keepData.views += 1;
