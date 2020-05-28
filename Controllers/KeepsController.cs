@@ -105,6 +105,26 @@ namespace Keepr.Controllers
         }
 
         // NOTE Put Request
+        [Authorize]
+        [HttpPut("{id}")]
+        public ActionResult<Keep> Edit(int id, [FromBody] Keep keepToUpdate){
+            try
+            {
+                keepToUpdate.Id = id;
+                Claim user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+                if (user == null)
+                {
+                    throw new Exception("Please Login");
+                }
+                string userId = user.Value;
+                return Ok(_ks.Edit(keepToUpdate, userId));
+            }
+            catch (System.Exception err)
+            {
+                return BadRequest(err.Message);                
+            }
+        }
+
         // [Authorize]
         // [HttpPut("{id}")]
         // public ActionResult<Keep> toggleIsPrivate(int id, [FromBody] Keep keepToUpdate)

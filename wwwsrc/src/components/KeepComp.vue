@@ -4,60 +4,60 @@
     <div class="card promoting-card p-1 m-2" style="box-shadow: 1px 1px 10px #f57a007a">
       <!-- dropdown toggle options -->
       <div class="row">
-<div class="col-2">
-      <div class="dropdown show" v-if="$auth.user.sub == keepData.userId">
-        <button
-          class="bg-transparent border-0"
-          href="#"
-          role="button"
-          id="dropdownMenuLink"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          <i class="fas fa-ellipsis-h"></i>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <button
-            class="btn text-danger btn-sm ml-4"
-            style="font-size: 1.1rem"
-            @click="deleteKeep()"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Delete This Keep"
-          >Delete Keep</button>
+        <div class="col-2">
+          <div class="dropdown show" v-if="$auth.user.sub == keepData.userId">
+            <button
+              class="bg-transparent border-0"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fas fa-ellipsis-h"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <button
+                class="btn text-danger btn-sm ml-4"
+                style="font-size: 1.1rem"
+                @click="deleteKeep()"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Delete This Keep"
+              >Delete Keep</button>
+            </div>
+          </div>
         </div>
-      </div>
-      </div>
 
-<div class="col-7"></div>
+        <div class="col-7"></div>
 
-      <!-- NOTE VaultKeep -->
-      <div class="col-2 ml-4 mt-1">
-      <div class="dropdown">
-        <button
-          class="btn btn-info dropdown-toggle"
-          id="menu1"
-          type="button"
-          data-toggle="dropdown"
-        >
-          Add 2  Vault
-          <span class="caret"></span>
-        </button>
+        <!-- NOTE VaultKeep -->
+        <div class="col-2 ml-4 mt-1">
+          <div class="dropdown">
+            <button
+              class="btn btn-info dropdown-toggle"
+              id="menu1"
+              type="button"
+              data-toggle="dropdown"
+            >
+              Add 2 Vault
+              <span class="caret"></span>
+            </button>
 
-        <ul
-          v-for="vault in vaults"
-          :key="vault.id"
-          class="dropdown-menu"
-          role="menu"
-          aria-labelledby="menu1"
-        >
-          <li role="presentation" @click="addKeepToVault(vault.id)">
-            <a role="menuitem">{{vault.name}}</a>
-          </li>
-        </ul>
-      </div>
-      </div>
+            <ul
+              v-for="vault in vaults"
+              :key="vault.id"
+              class="dropdown-menu"
+              role="menu"
+              aria-labelledby="menu1"
+            >
+              <li role="presentation" @click="addKeepToVault(vault.id)">
+                <a role="menuitem">{{vault.name}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <!-- Card content -->
@@ -149,7 +149,6 @@
 
 
 <script>
-
 export default {
   name: "keep",
   props: ["keepData"],
@@ -163,11 +162,13 @@ export default {
   },
   methods: {
     addKeepToVault(vaultId) {
+      this.keepData.keeps += 1;
+      this.$store.dispatch("editKeep", this.keepData);
       console.log(this.keepData);
-      let keepId = this.keepData.id
-      let userId = this.keepData.userId
-      let vaultKeep = {vaultId, keepId, userId}
-      this.$store.dispatch("addKeepToVault", vaultKeep)
+      let keepId = this.keepData.id;
+      let userId = this.keepData.userId;
+      let vaultKeep = { vaultId, keepId, userId };
+      this.$store.dispatch("addKeepToVault", vaultKeep);
     },
     deleteKeep() {
       Swal.fire({

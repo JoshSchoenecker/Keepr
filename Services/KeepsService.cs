@@ -64,7 +64,28 @@ namespace Keepr.Services
             return _repo.GetKeepsByVaultId(id);
         }
 
+      
+
         // NOTE Put Requests
+  internal Keep Edit(Keep keepToUpdate, string userId)
+        {
+            Keep foundKeep = GetKeepById(keepToUpdate.Id);
+            if (foundKeep.Keeps < keepToUpdate.Keeps)
+            {
+                if (_repo.AddToKeepCount(keepToUpdate));
+                {
+                    foundKeep.Keeps = keepToUpdate.Keeps;
+                    return foundKeep;
+                }
+                throw new Exception("wrong way");
+            }
+            if (_repo.Edit(keepToUpdate, userId))
+            {
+                return keepToUpdate;
+            }
+            throw new Exception("Not your Keep to edit");
+        }
+
         // internal Keep toggleIsPrivate(Keep keepToUpdate, string userId)
         // {
         //     Keep foundKeep = GetKeepById(keepToUpdate.Id);

@@ -30,12 +30,12 @@ export default new Vuex.Store({
     setVaults(state, vaults) {
       state.vaults = vaults;
     },
-    setVaultKeeps(state, vaultKeeps){
+    setVaultKeeps(state, vaultKeeps) {
       state.vaultKeeps = vaultKeeps;
     },
-    setActiveKeep(state, keep){
+    setActiveKeep(state, keep) {
       state.activeKeep = keep;
-    }
+    },
   },
   actions: {
     setBearer({}, bearer) {
@@ -65,7 +65,7 @@ export default new Vuex.Store({
     },
     async createKeep({ dispatch }, newKeep) {
       try {
-        let res = await api.post("keeps", newKeep);
+        await api.post("keeps", newKeep);
         dispatch("getKeeps");
       } catch (error) {
         console.error(error, "failed to createKeep from store");
@@ -79,12 +79,23 @@ export default new Vuex.Store({
         console.error(error, "failed to deleteKeep from Store");
       }
     },
+    // NOTE Put Request
+    async editKeep({ dispatch }, keepData) {
+      try {
+        console.log("editKeep:", keepData);
 
-// NOTE Vault Actions
+        await api.put("keeps/" + keepData.id, keepData);
+        dispatch("getKeeps");
+      } catch (error) {
+        console.error(error, "failed to addKeepsToKeep from Store");
+      }
+    },
+
+    // NOTE Vault Actions
     // NOTE Post Request
     async createVault({ dispatch }, newVault) {
       try {
-        let res = await api.post("vaults", newVault);
+        await api.post("vaults", newVault);
         dispatch("getUserVaults");
       } catch (error) {
         console.error(error, "failed to createVault from Store");
@@ -109,26 +120,25 @@ export default new Vuex.Store({
       }
     },
 
-// NOTE VaultKeep Requests
+    // NOTE VaultKeep Requests
     // NOTE Post Request
-    async addKeepToVault({dispatch}, vaultKeep){
-    try {
-      let res = await api.post("vaultkeeps/", vaultKeep)
-      dispatch("getVaultKeeps")
-    } catch (error) {
-      console.error(error, "failed addKeepToVault from Store");
-    }      
+    async addKeepToVault({ dispatch }, vaultKeep) {
+      try {
+        let res = await api.post("vaultkeeps/", vaultKeep);
+        dispatch("getKeepsOnVaults", res.data.vaultId);
+      } catch (error) {
+        console.error(error, "failed addKeepToVault from Store");
+      }
     },
 
-
-    // NOTE Get Request PATH: `vaults/ ${vaultId}/ keeps`
-    async getKeepsOnVaults({commit}, vaultId){
+    // NOTE Get Request PATH: `vaults/ ${vaultId}/ keeps` did not work.
+    async getKeepsOnVaults({ commit }, vaultId) {
       try {
-        let res = await api.get(`vaults/ ${vaultId}/ keeps`)
-        commit("setVaultKeeps", vaultId)
+        await api.get("vaults/" + vaultId + "/keeps");
+        commit("setVaultKeeps", vaultId);
       } catch (error) {
         console.error(error, "failed to getKeepsOnVaults from Store");
       }
-    }
+    },
   },
 });

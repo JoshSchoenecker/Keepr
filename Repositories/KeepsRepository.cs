@@ -67,7 +67,33 @@ namespace Keepr.Repositories
             FROM vaultkeeps vk
             INNER JOIN keeps k ON k.id = vk.keepId 
             WHERE (vaultId = @vaultId)";
-            return _db.Query<VaultKeepViewModel>(sql, new {vaultId});
+            return _db.Query<VaultKeepViewModel>(sql, new { vaultId });
+        }
+
+        internal bool AddToKeepCount(Keep keepToUpdate)
+        {
+            string sql = @"
+            UPDATE keeps
+            SET
+            keeps = @Keeps
+            WHERE id = @Id";
+            int affectedRows = _db.Execute(sql, keepToUpdate);
+            return affectedRows == 1;
+        }
+
+        internal bool Edit(Keep keepToUpdate, string userId)
+        {
+            keepToUpdate.UserId = userId;
+            string sql = @"
+            UPDATE keeps
+            SET
+            name = @Name,
+            description = @Description,
+            img = @Img,
+            isPrivate = @isPrivate
+            WHERE id = @Id AND userId = @UserId";
+            int affectedRows = _db.Execute(sql, keepToUpdate);
+            return affectedRows == 1;
         }
 
         // NOTE Put Requests
