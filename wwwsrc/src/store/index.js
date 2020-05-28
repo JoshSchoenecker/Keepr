@@ -66,7 +66,7 @@ export default new Vuex.Store({
     async createKeep({ dispatch }, newKeep) {
       try {
         await api.post("keeps", newKeep);
-        dispatch("getKeeps");
+        dispatch("getUserKeeps");
       } catch (error) {
         console.error(error, "failed to createKeep from store");
       }
@@ -74,7 +74,7 @@ export default new Vuex.Store({
     async deleteKeep({ commit, dispatch }, keepId) {
       try {
         await api.delete("keeps/" + keepId);
-        dispatch("getKeeps");
+        dispatch("getUserKeeps");
       } catch (error) {
         console.error(error, "failed to deleteKeep from Store");
       }
@@ -85,13 +85,13 @@ export default new Vuex.Store({
         console.log("editKeep:", keepData);
 
         await api.put("keeps/" + keepData.id, keepData);
-        dispatch("getKeeps");
+        dispatch("getUserKeeps");
       } catch (error) {
         console.error(error, "failed to editKeep from Store");
       }
     },
 
-    // NOTE Vault Actions
+    // NOTE Vault Requests
     // NOTE Post Request
     async createVault({ dispatch }, newVault) {
       try {
@@ -135,23 +135,35 @@ export default new Vuex.Store({
     async addKeepToVault({ dispatch }, vaultKeep) {
       try {
         let res = await api.post("vaultkeeps/", vaultKeep);
+        // TODO currently getting any keep on a vault?
         dispatch("getKeepsOnVaults", res.data.vaultId);
       } catch (error) {
         console.error(error, "failed addKeepToVault from Store");
       }
     },
 
-    // NOTE Get Request PATH: `vaults/ ${vaultId}/ keeps` did not work.
+    // NOTE Get Request
+    // PATH: `vaults/ ${vaultId}/ keeps` did not work.
     async getKeepsOnVaults({ commit }, vaultId) {
       try {
-        console.log("vaultId",vaultId);
+        console.log("vaultId", vaultId);
         let res = await api.get("vaults/" + vaultId + "/keeps");
         console.log(res.data);
-        
+
         commit("setVaultKeeps", res.data);
       } catch (error) {
         console.error(error, "failed to getKeepsOnVaults from Store");
       }
     },
+
+    // NOTE Delete Request
+    async removeKeepFromVault({dispatch}, vaultKeepId){
+      try {
+        await api.delete("vaultkeeps/"+ vaultKeepId)
+        dispatch("getUserKeeps")
+      } catch (error) {
+        console.error(error,"failed to removeKeepFromVault from Store");
+      }
+    }
   },
 });

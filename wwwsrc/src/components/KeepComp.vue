@@ -4,7 +4,7 @@
     <div class="card promoting-card p-1 m-2" style="box-shadow: 1px 1px 10px #f57a007a">
       <!-- dropdown toggle options -->
       <div class="row">
-        <div class="col-6">
+        <div class="col-6"  v-if="$auth.user">
           <!-- TODO once remove keep from vault works, this  v-if will need to move onto delete button  -->
           <div class="dropdown show" v-if="$auth.user.sub == keepData.userId">
             <button
@@ -170,11 +170,11 @@ export default {
   },
   methods: {
     removeKeepFromVault() {
-      // this.keepData.keeps -= 1;
-      // this.$store.dispatch("editKeep", this.keepData)
+      this.keepData.keeps -= 1;
+      this.$store.dispatch("editKeep", this.keepData)
       console.log(this.keepData);
       
-      // this.$store.dispatch("removeKeepFromVault", this.)
+      this.$store.dispatch("removeKeepFromVault", this.keepData.vaultKeepId)
     },
     viewKeep() {
       this.keepData.views += 1;

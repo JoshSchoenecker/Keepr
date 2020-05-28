@@ -47,7 +47,7 @@ namespace Keepr.Services
             {
                 throw new Exception("Not your Keep!");
             }
-            if (foundKeep.IsPrivate != false)
+            if (foundKeep.IsPrivate != true)
             {
                 throw new Exception("You can not delete public Keeps");
             }
@@ -70,7 +70,7 @@ namespace Keepr.Services
   internal Keep Edit(Keep keepToUpdate, string userId)
         {
             Keep foundKeep = GetKeepById(keepToUpdate.Id);
-            if (foundKeep.Keeps <= keepToUpdate.Keeps)
+            if (foundKeep.Keeps != keepToUpdate.Keeps || foundKeep.Views != keepToUpdate.Views)
             {
                 // TODO possible mistaken empty statement??
                 if (_repo.AddToKeepCount(keepToUpdate))
