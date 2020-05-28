@@ -28,12 +28,13 @@ namespace Keepr.Controllers
         {
             try
             {
-                 Claim user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
-                 if (user == null)
-                 {
-                     throw new Exception("invalid id");
-                 }
-                 string userId = user.Value;
+                Claim user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+                if (user == null)
+                {
+                    throw new Exception("invalid id");
+                }
+                // TODO  why isnt this returning a userId?
+                string userId = user.Value;
                 return Ok(_vks.Create(newVaultKeep));
             }
             catch (System.Exception err)

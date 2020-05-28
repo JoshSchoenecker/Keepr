@@ -1,6 +1,6 @@
 <template>
   <div class="vault col-sm-10 col-lg-3 m-auto">
-    <div class="card mb-3" style="box-shadow: 1px 1px 10px #369">
+    <div @click="goToVaultDetails()" class="card mb-3" style="box-shadow: 1px 1px 10px #369">
       <!-- TODO drop down elipse for EDIT -->
       <div class="dropdown show" v-if="$auth.user.sub == vaultData.userId">
         <button
@@ -49,6 +49,10 @@ export default {
   },
   computed: {},
   methods: {
+    goToVaultDetails() {
+      this.$store.commit("setActiveVault", {});
+      this.$router.push({name: "vaultDetails", params:{vaultId: this.vaultData.id}})
+    },
     deleteVault() {
       Swal.fire({
         title: "Are you sure?",
