@@ -20,6 +20,8 @@ export default new Vuex.Store({
     publicKeeps: [],
     keeps: [],
     vaults: [],
+    vaultKeeps: [],
+    activeKeep: {},
   },
   mutations: {
     setKeeps(state, keeps) {
@@ -28,6 +30,12 @@ export default new Vuex.Store({
     setVaults(state, vaults) {
       state.vaults = vaults;
     },
+    setVaultKeeps(state, vaultKeeps){
+      state.vaultKeeps = vaultKeeps;
+    },
+    setActiveKeep(state, keep){
+      state.activeKeep = keep;
+    }
   },
   actions: {
     setBearer({}, bearer) {
@@ -72,7 +80,8 @@ export default new Vuex.Store({
       }
     },
 
-    // NOTE Vault Actions
+// NOTE Vault Actions
+    // NOTE Post Request
     async createVault({ dispatch }, newVault) {
       try {
         let res = await api.post("vaults", newVault);
@@ -81,6 +90,7 @@ export default new Vuex.Store({
         console.error(error, "failed to createVault from Store");
       }
     },
+    // NOTE Get Request
     async getUserVaults({ commit }) {
       try {
         let res = await api.get("/vaults/user");
@@ -89,6 +99,7 @@ export default new Vuex.Store({
         console.error(error, "failed to getUserVaults from Store");
       }
     },
+    // NOTE Delete Request
     async deleteVault({ dispatch }, vaultId) {
       try {
         await api.delete("vaults/" + vaultId);
@@ -97,5 +108,27 @@ export default new Vuex.Store({
         console.error(error, "failed to deleteVault from Store");
       }
     },
+
+// NOTE VaultKeep Requests
+    // NOTE Post Request
+    async addKeepToVault({dispatch}, vaultKeep){
+    try {
+      let res = await api.post("vaultkeeps/", vaultKeep)
+      dispatch("getVaultKeeps")
+    } catch (error) {
+      console.error(error, "failed addKeepToVault from Store");
+    }      
+    },
+
+
+    // NOTE Get Request PATH: `vaults/ ${vaultId}/ keeps`
+    async getKeepsOnVaults({commit}, vaultId){
+      try {
+        let res = await api.get(`vaults/ ${vaultId}/ keeps`)
+        commit("setVaultKeeps", vaultId)
+      } catch (error) {
+        console.error(error, "failed to getKeepsOnVaults from Store");
+      }
+    }
   },
 });

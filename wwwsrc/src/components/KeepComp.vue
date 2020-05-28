@@ -3,6 +3,8 @@
     <!--NOTE Keep Card -->
     <div class="card promoting-card p-1 m-2" style="box-shadow: 1px 1px 10px #f57a007a">
       <!-- dropdown toggle options -->
+      <div class="row">
+<div class="col-2">
       <div class="dropdown show" v-if="$auth.user.sub == keepData.userId">
         <button
           class="bg-transparent border-0"
@@ -25,6 +27,37 @@
             title="Delete This Keep"
           >Delete Keep</button>
         </div>
+      </div>
+      </div>
+
+<div class="col-7"></div>
+
+      <!-- NOTE VaultKeep -->
+      <div class="col-2 ml-4 mt-1">
+      <div class="dropdown">
+        <button
+          class="btn btn-info dropdown-toggle"
+          id="menu1"
+          type="button"
+          data-toggle="dropdown"
+        >
+          Add 2  Vault
+          <span class="caret"></span>
+        </button>
+
+        <ul
+          v-for="vault in vaults"
+          :key="vault.id"
+          class="dropdown-menu"
+          role="menu"
+          aria-labelledby="menu1"
+        >
+          <li role="presentation" @click="addKeepToVault(vault.id)">
+            <a role="menuitem">{{vault.name}}</a>
+          </li>
+        </ul>
+      </div>
+      </div>
       </div>
 
       <!-- Card content -->
@@ -94,21 +127,21 @@
           <span class="text-danger">{{keepData.views}}</span>
         </i>
 
-         <!-- IsPrivate icons  -->
-          <a
-            class="fas fa-lock-open text-danger"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Toggle private status"
-            v-show="keepData.isPrivate == false"
-          >Public</a>
-          <a
-            class="fas fa-lock text-info"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Toggle private status"
-            v-show="keepData.isPrivate == true"
-          >Private</a>
+        <!-- IsPrivate icons  -->
+        <a
+          class="fas fa-lock-open text-danger"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="Toggle private status"
+          v-show="keepData.isPrivate == false"
+        >Public</a>
+        <a
+          class="fas fa-lock text-info"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="Toggle private status"
+          v-show="keepData.isPrivate == true"
+        >Private</a>
       </div>
     </div>
   </div>
@@ -116,14 +149,26 @@
 
 
 <script>
+
 export default {
   name: "keep",
   props: ["keepData"],
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+    vaults() {
+      return this.$store.state.vaults;
+    }
+  },
   methods: {
+    addKeepToVault(vaultId) {
+      console.log(this.keepData);
+      let keepId = this.keepData.id
+      let userId = this.keepData.userId
+      let vaultKeep = {vaultId, keepId, userId}
+      this.$store.dispatch("addKeepToVault", vaultKeep)
+    },
     deleteKeep() {
       Swal.fire({
         title: "Are you sure?",
