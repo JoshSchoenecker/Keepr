@@ -1,10 +1,11 @@
 <template>
-  <div class="keep col-sm-10 col-lg-3 m-auto">
+  <div class="keep col-sm-10 col-lg-4 m-auto">
     <!--NOTE Keep Card -->
     <div class="card promoting-card p-1 m-2" style="box-shadow: 1px 1px 10px #f57a007a">
       <!-- dropdown toggle options -->
       <div class="row">
-        <div class="col-2">
+        <div class="col-6">
+          <!-- TODO once remove keep from vault works, this  v-if will need to move onto delete button  -->
           <div class="dropdown show" v-if="$auth.user.sub == keepData.userId">
             <button
               class="bg-transparent border-0"
@@ -38,13 +39,11 @@
           </div>
         </div>
 
-        <div class="col-7"></div>
-
         <!-- NOTE VaultKeep -->
-        <div class="col-2 ml-4 mt-1">
+        <div class="col-6 mt-2">
           <div class="dropdown">
             <button
-              class="btn btn-info dropdown-toggle"
+              class="btn btn-info dropdown-toggle float-right"
               id="menu1"
               type="button"
               data-toggle="dropdown"

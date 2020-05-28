@@ -11,16 +11,16 @@
             <h5>{{vault.description}}</h5>
           </div>
           <div class="card-footer">
-            <p>
-            {{vaultKeeps.keeps}}
-            </p>
+            <p>{{vaultKeeps.keeps}}</p>
           </div>
         </div>
       </div>
     </div>
 
     <!-- NOTE Keeps -->
-    <Keep v-for="keep in vaultKeeps" :key="keep.id" :keepData="keep"/>
+    <div class="row">
+      <Keep v-for="keep in vaultKeeps" :key="keep.id" :keepData="keep" />
+    </div>
   </div>
 </template>
 
