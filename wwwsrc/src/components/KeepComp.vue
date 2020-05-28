@@ -5,8 +5,7 @@
       <!-- dropdown toggle options -->
       <div class="row">
         <div class="col-6"  v-if="$auth.user">
-          <!-- TODO once remove keep from vault works, this  v-if will need to move onto delete button  -->
-          <div class="dropdown show" v-if="$auth.user.sub == keepData.userId">
+          <div class="dropdown show" >
             <button
               class="bg-transparent border-0"
               href="#"
@@ -20,6 +19,7 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <button
+              v-if="$auth.user.sub == keepData.userId && keepData.isPrivate != false"
                 class="btn text-danger btn-sm ml-4"
                 style="font-size: 1.1rem"
                 @click="deleteKeep()"
