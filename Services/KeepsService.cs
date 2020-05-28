@@ -70,12 +70,13 @@ namespace Keepr.Services
   internal Keep Edit(Keep keepToUpdate, string userId)
         {
             Keep foundKeep = GetKeepById(keepToUpdate.Id);
-            if (foundKeep.Keeps < keepToUpdate.Keeps)
+            if (foundKeep.Keeps <= keepToUpdate.Keeps)
             {
                 // TODO possible mistaken empty statement??
-                if (_repo.AddToKeepCount(keepToUpdate));
+                if (_repo.AddToKeepCount(keepToUpdate))
                 {
                     foundKeep.Keeps = keepToUpdate.Keeps;
+                    foundKeep.Views = keepToUpdate.Views;
                     return foundKeep;
                 }
                 throw new Exception("wrong way");

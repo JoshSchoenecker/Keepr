@@ -27,6 +27,16 @@
                 title="Delete This Keep"
               >Delete Keep</button>
             </div>
+            <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                 <button
+                class="btn text-danger btn-sm ml-4"
+                style="font-size: 1.1rem"
+                @click="removeKeepFromVault()"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Delete This Keep"
+              >Remove From Vault</button>
+            </div>-->
           </div>
         </div>
 
@@ -44,14 +54,13 @@
               Add 2 Vault
               <span class="caret"></span>
             </button>
-            <ul
-            
-              class="dropdown-menu"
-              role="menu"
-              aria-labelledby="menu1"
-            >
-              <li v-for="vault in vaults"
-              :key="vault.id" role="presentation" @click="addKeepToVault(vault.id)">
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+              <li
+                v-for="vault in vaults"
+                :key="vault.id"
+                role="presentation"
+                @click="addKeepToVault(vault.id)"
+              >
                 <a role="menuitem">{{vault.name}}</a>
               </li>
             </ul>
@@ -160,6 +169,17 @@ export default {
     }
   },
   methods: {
+    removeKeepFromVault() {
+      // this.keepData.keeps -= 1;
+      // this.$store.dispatch("editKeep", this.keepData)
+      console.log(this.keepData);
+
+      // this.$store.dispatch("removeKeepFromVault", this.)
+    },
+    viewKeep() {
+      this.keepData.views += 1;
+      this.$store.dispatch("editKeep", this.keepData)
+    },
     addKeepToVault(vaultId) {
       this.keepData.keeps += 1;
       this.$store.dispatch("editKeep", this.keepData);

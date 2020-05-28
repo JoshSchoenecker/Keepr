@@ -14,6 +14,7 @@
         >
           <i class="fas fa-ellipsis-h"></i>
         </button>
+        <!-- NOTE Delete Vault -->
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <button
             class="btn text-danger btn-sm ml-4"
@@ -32,10 +33,10 @@
       <div class="card-body">
         <h5>{{vaultData.description}}</h5>
       </div>
-      <div class="card-footer text-center mb-1 mx-auto rounded shadow-sm border-0 bg-light"> 
+      <div class="card-footer text-center mb-1 mx-auto rounded shadow-sm border-0 bg-light">
         <div class="d-flex" @click="goToVaultDetails()">
-        <p class="mb-0 mr-1">Go To Vault</p>
-        <i class="fas fa-arrow-right mt-1"></i>
+          <p class="mb-0 mr-1">Go To Vault</p>
+          <i class="fas fa-arrow-right mt-1"></i>
         </div>
         <!-- TODO total amount of keeps & create at date -->
       </div>
@@ -55,7 +56,10 @@ export default {
   methods: {
     goToVaultDetails() {
       this.$store.commit("setActiveVault", {});
-      this.$router.push({name: "vaultDetails", params:{vaultId: this.vaultData.id}})
+      this.$router.push({
+        name: "vaultDetails",
+        params: { vaultId: this.vaultData.id }
+      });
     },
     deleteVault() {
       Swal.fire({

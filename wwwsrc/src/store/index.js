@@ -87,7 +87,7 @@ export default new Vuex.Store({
         await api.put("keeps/" + keepData.id, keepData);
         dispatch("getKeeps");
       } catch (error) {
-        console.error(error, "failed to addKeepsToKeep from Store");
+        console.error(error, "failed to editKeep from Store");
       }
     },
 

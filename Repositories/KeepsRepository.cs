@@ -75,11 +75,23 @@ namespace Keepr.Repositories
             string sql = @"
             UPDATE keeps
             SET
-            keeps = @Keeps
+            keeps = @Keeps,
+            views = @Views
             WHERE id = @Id";
             int affectedRows = _db.Execute(sql, keepToUpdate);
             return affectedRows == 1;
         }
+
+        // internal bool AddToViewCount(Keep keepToUpdate)
+        // {
+        //     string sql = @"
+        //     UPDATE keeps
+        //     SET
+        //     views = @Views
+        //     WHERE id = @id";
+        //     int affectedRows = _db.Execute(sql, keepToUpdate);
+        //     return affectedRows == 1;
+        // }
 
         internal bool Edit(Keep keepToUpdate, string userId)
         {
