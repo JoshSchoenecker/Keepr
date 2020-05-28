@@ -130,7 +130,7 @@
           title="Share this Keep"
         >
           :
-          <span class="text-danger">{{keepData.views}}</span>
+          <span class="text-danger">{{keepData.shares}}</span>
         </i>
 
         <!-- IsPrivate icons  -->
