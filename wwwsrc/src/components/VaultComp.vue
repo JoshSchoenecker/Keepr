@@ -1,5 +1,5 @@
 <template>
-  <div class="vault col-sm-10 col-lg-3 m-auto">
+  <div class="vault col-sm-10 col-lg-4 m-auto">
     <div class="card mb-3" style="box-shadow: 1px 1px 10px #369">
       <!-- TODO drop down elipse for EDIT -->
       <div class="dropdown show" v-if="$auth.user.sub == vaultData.userId">

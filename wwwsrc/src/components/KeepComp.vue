@@ -1,7 +1,7 @@
 <template>
-  <div class="keep col-sm-10 col-lg-4 m-auto">
+  <div class="keep col-sm-10 col-lg-4">
     <!--NOTE Keep Card -->
-    <div class="card promoting-card p-1 m-2" style="box-shadow: 1px 1px 10px #f57a007a">
+    <div class="card promoting-card m-1" style="box-shadow: 1px 1px 10px #f57a007a">
       <!-- dropdown toggle options -->
       <div class="row">
         <div class="col-6" v-if="$auth.user">
@@ -51,7 +51,7 @@
               Add 2 Vault
               <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+            <ul class="dropdown-menu m-0 p-0" role="menu" aria-labelledby="menu1">
               <li
                 v-for="vault in vaults"
                 :key="vault.id"

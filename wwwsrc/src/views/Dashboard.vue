@@ -1,18 +1,18 @@
 <template>
   <div class="dashboard container-fluid" v-if="$auth.isAuthenticated">
     <!-- NOTE Vaults -->
-
-    <CreateVaultComp style="height:1rem" />
-    <div class="row my-5">
-      <div class="col-12 text-center">
-        <h2 class>
-          Your Vaults
-          <hr class="w-50 bg-danger" />
-        </h2>
+    <div class="bg px-3 rounded shadow">
+      <CreateVaultComp class style="height:1rem" />
+      <div class="row my-5 bgImage">
+        <div class="col-12 text-center p-0 m-0">
+          <h2 class>
+            Your Vaults
+          </h2>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <VaultComp v-for="vault in vaults" :key="vault.id" :vaultData="vault" />
+      <div class="row">
+        <VaultComp v-for="vault in vaults" :key="vault.id" :vaultData="vault" />
+      </div>
     </div>
 
     <hr class="bg-info mt-5 mb-0" />
@@ -22,18 +22,14 @@
 
     <!-- NOTE Private keeps -->
     <div class="row">
-      <div class="col-12 text-center">
+      <div class="col-12 text-center p-0 m-0">
         <h2>Your Keeps</h2>
-        <hr class="w-50 bg-danger mb-5" />
       </div>
     </div>
     <!-- TODO setup mounted for private and public keeps & insert v-if="this.keepData.isPrivate == true" in row -->
     <div class="row mt-3">
       <KeepComp v-for="keep in keeps" :key="keep.id" :keepData="keep" />
     </div>
-
-    <hr class="bg-info my-5" />
-
     <!-- NOTE Public keeps -->
     <!-- <div class="row">
       <div class="col-12 text-center">
@@ -72,4 +68,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.bg{
+  background: rgb(131,58,180);
+background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+height: 100%;
+width: 100%;
+}
+</style>
