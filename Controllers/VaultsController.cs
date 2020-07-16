@@ -94,7 +94,7 @@ namespace Keepr.Controllers
 
         // NOTE Put Request
 
-     // NOTE Many => Many requests
+        // NOTE Many => Many requests
         // NOTE Get Request
         [Authorize]
         [HttpGet("{id}/keeps")]
@@ -108,12 +108,12 @@ namespace Keepr.Controllers
                 {
                     throw new Exception("invalid userId");
                 }
-                 string userId = user.Value;
+                string userId = user.Value;
                 return Ok(_ks.GetKeepsByVaultId(id, userId));
             }
             catch (System.Exception err)
             {
-                return BadRequest(err.Message);                
+                return BadRequest(err.Message);
             }
         }
     }

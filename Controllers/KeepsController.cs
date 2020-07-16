@@ -79,7 +79,7 @@ namespace Keepr.Controllers
             }
             catch (System.Exception err)
             {
-                return BadRequest(err.Message);                
+                return BadRequest(err.Message);
             }
         }
 
@@ -107,7 +107,8 @@ namespace Keepr.Controllers
         // NOTE Put Request
         [Authorize]
         [HttpPut("{id}")]
-        public ActionResult<Keep> Edit(int id, [FromBody] Keep keepToUpdate){
+        public ActionResult<Keep> Edit(int id, [FromBody] Keep keepToUpdate)
+        {
             try
             {
                 keepToUpdate.Id = id;
@@ -121,7 +122,7 @@ namespace Keepr.Controllers
             }
             catch (System.Exception err)
             {
-                return BadRequest(err.Message);                
+                return BadRequest(err.Message);
             }
         }
 

@@ -51,11 +51,11 @@ What this site is already pretty if you follow the mocks :wink: Make sure the fe
 #### Visualization:
 
 [x] Visitors can see all public keeps (login not required)
-[] Keeps are displayed in a card like format with all data rendered
+[x] Keeps are displayed in a card like format with all data rendered
 [x] Users have a dashboard route to see all their vaults
 [x] Users can only see vaults they created
-[] Users can View all the keeps in a given vault
-[] Anytime a `keep` is `kept in a vault` the relevant count should go up
+[x] Users can View all the keeps in a given vault
+[x] Anytime a `keep` is `kept in a vault` the relevant count should go up
 
 #### Functionality:
 
@@ -65,7 +65,7 @@ What this site is already pretty if you follow the mocks :wink: Make sure the fe
 [x] Create and Delete Keeps
 [x] Create and Delete Vaults
 [x] Only Delete **things they created**
-[] Add Keeps to Vaults
+[x] Add Keeps to Vaults
 [] Remove Keeps from Vaults
 
 ### Finished?
