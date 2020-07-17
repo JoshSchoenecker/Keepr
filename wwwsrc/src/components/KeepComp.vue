@@ -1,10 +1,10 @@
 <template>
-  <div class="keep col-sm-10 col-lg-4">
+  <div class="keep col-sm-10 col-lg-6">
     <!--NOTE Keep Card -->
     <div class="card promoting-card m-1" style="box-shadow: 1px 1px 10px #f57a007a">
       <!-- dropdown toggle options -->
       <div class="row">
-        <div class="col-6" v-if="$auth.user">
+        <div class="col-6 mt-2 pl-4" v-if="$auth.user">
           <div class="dropdown show">
             <button
               class="bg-transparent border-0"
@@ -28,8 +28,8 @@
                 title="Delete This Keep"
               >Delete Keep</button>
               <button
-                class="btn text-danger btn-sm ml-4"
-                style="font-size: 1.1rem"
+                class="btn text-danger btn-sm"
+                style="font-size: 1rem"
                 @click="removeKeepFromVault()"
                 data-toggle="tooltip"
                 data-placement="top"
@@ -40,7 +40,7 @@
         </div>
 
         <!-- NOTE VaultKeep -->
-        <div class="col-6 mt-2" v-if="$auth.user">
+        <div class="col-6 mt-2 pr-4" v-if="$auth.user">
           <div class="dropdown">
             <button
               class="btn btn-info dropdown-toggle float-right"
@@ -66,7 +66,7 @@
       </div>
 
       <!-- Card content -->
-      <div class="card-body d-flex flex-row">
+      <div class="card-body d-flex flex-row p-3">
         <!-- TODO User Image -->
         <img
           src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg"
