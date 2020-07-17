@@ -1,5 +1,5 @@
 <template>
-  <div class="create-keep row">
+  <div class="create-keep">
     <!-- Full Height Modal Right -->
     <div
       id="createKeepModal"
@@ -79,7 +79,7 @@
     <!-- Button trigger modal -->
     <button
       type="button"
-      class="btn text-danger p-0 pl-2 ml-5"
+      class="btn text-danger pb-0"
       style="font-size:2.6rem; text-shadow: 1px 1px 3px #000000;"
       data-toggle="modal"
       data-target="#createKeepModal"

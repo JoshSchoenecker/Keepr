@@ -1,35 +1,42 @@
 <template>
   <div class="dashboard container-fluid" v-if="$auth.isAuthenticated">
     <!-- NOTE Vaults -->
-    <div class="bg px-3 rounded shadow">
-      <CreateVaultComp class style="height:1rem" />
-      <div class="row my-5 bgImage">
-        <div class="col-12 text-center p-0 m-0">
-          <h2 class>
-            Your Vaults
-          </h2>
-        </div>
+    <div class="row justify-content-center bg rounded shadow">
+
+      <div class="col-lg-2"></div>
+
+      <div class="col-sm-12 col-lg-8 text-center m-auto">
+        <h2 class="m-0">Your Vaults</h2>
       </div>
+
+      <div class="col-sm-12 col-lg-2">
+        <CreateVaultComp class="text-center pl-lg-4" />
+      </div>
+    </div>
+
       <div class="row">
         <VaultComp v-for="vault in vaults" :key="vault.id" :vaultData="vault" />
       </div>
-    </div>
 
     <hr class="bg-info mt-5 mb-0" />
 
-    <!-- NOTE Create keep -->
-    <CreateKeepComp class="justify-content-end mr-5 pr-2" style="height: 3rem" />
-
     <!-- NOTE Private keeps -->
     <div class="row">
-      <div class="col-12 text-center p-0 m-0">
-        <h2>Your Keeps</h2>
+      <div class="col-2"></div>
+      <div class="col-8 text-center">
+        <h2 class="mt-4 mb-0">Your Keeps</h2>
+      </div>
+      <!-- NOTE Create keep -->
+      <div class="col-2 text-center">
+        <CreateKeepComp class />
       </div>
     </div>
+
     <!-- TODO setup mounted for private and public keeps & insert v-if="this.keepData.isPrivate == true" in row -->
     <div class="row mt-3">
       <KeepComp v-for="keep in keeps" :key="keep.id" :keepData="keep" />
     </div>
+
     <!-- NOTE Public keeps -->
     <!-- <div class="row">
       <div class="col-12 text-center">
@@ -69,10 +76,15 @@ export default {
 </script>
 
 <style scoped>
-.bg{
-  background: rgb(131,58,180);
-background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
-height: 100%;
-width: 100%;
+.bg {
+  background: rgb(131, 58, 180);
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
 }
 </style>

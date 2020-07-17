@@ -58,8 +58,8 @@
     <!-- Button trigger modal -->
     <button
       type="button"
-      class="btn text-info p-0 pl-2 ml-5"
-      style="font-size:2.8rem; text-shadow: 1px 1px 3px #000000;"
+      class="btn text-info pt-0"
+      style="font-size:2.6rem; text-shadow: 1px 1px 3px #000000;"
       data-toggle="modal"
       data-target="#fullHeightModalRight"
     >&plus;</button>
