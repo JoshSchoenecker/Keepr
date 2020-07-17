@@ -1,12 +1,11 @@
 <template>
   <div class="dashboard container-fluid" v-if="$auth.isAuthenticated">
     <!-- NOTE Vaults -->
-    <div class="row justify-content-center bg rounded shadow">
-
+    <div class="row justify-content-center bgVaults rounded shadow mt-1">
       <div class="col-lg-2"></div>
 
       <div class="col-sm-12 col-lg-8 text-center m-auto">
-        <h2 class="m-0">Your Vaults</h2>
+        <h2 class="m-0 mt-3 mt-lg-0">Your Vaults</h2>
       </div>
 
       <div class="col-sm-12 col-lg-2">
@@ -14,26 +13,28 @@
       </div>
     </div>
 
-      <div class="row">
-        <VaultComp v-for="vault in vaults" :key="vault.id" :vaultData="vault" />
-      </div>
+    <div class="row">
+      <VaultComp v-for="vault in vaults" :key="vault.id" :vaultData="vault" />
+    </div>
 
     <hr class="bg-info mt-5 mb-0" />
 
-    <!-- NOTE Private keeps -->
-    <div class="row">
-      <div class="col-2"></div>
-      <div class="col-8 text-center">
-        <h2 class="mt-4 mb-0">Your Keeps</h2>
+    <!-- NOTE Keeps -->
+    <div class="row justify-content-center bgKeeps rounded shadow my-3">
+      <div class="col-lg-2"></div>
+
+      <div class="col-sm-12 col-lg-8 text-center m-auto">
+        <h2 class="m-0 mt-3 mt-lg-0">Your Keeps</h2>
       </div>
+
       <!-- NOTE Create keep -->
-      <div class="col-2 text-center">
-        <CreateKeepComp class />
+      <div class="col-sm-12 col-lg-2">
+        <CreateKeepComp class="text-center pl-lg-4" />
       </div>
     </div>
 
     <!-- TODO setup mounted for private and public keeps & insert v-if="this.keepData.isPrivate == true" in row -->
-    <div class="row mt-3">
+    <div class="row">
       <KeepComp v-for="keep in keeps" :key="keep.id" :keepData="keep" />
     </div>
 
@@ -76,7 +77,7 @@ export default {
 </script>
 
 <style scoped>
-.bg {
+.bgVaults {
   background: rgb(131, 58, 180);
   margin-left: 1rem;
   margin-right: 1rem;
@@ -85,6 +86,17 @@ export default {
     rgba(131, 58, 180, 1) 0%,
     rgba(253, 29, 29, 1) 50%,
     rgba(252, 176, 69, 1) 100%
+  );
+}
+.bgKeeps {
+  background: rgb(252, 176, 69);
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background: linear-gradient(
+    90deg,
+    rgba(252, 176, 69, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(131, 58, 180, 1) 100%
   );
 }
 </style>
